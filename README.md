@@ -125,6 +125,54 @@ oackctl notifications  defaults | set-defaults | copy-channels |
 oackctl devices        register | list | unregister
 ```
 
+## Shell completions
+
+Tab completion for commands, subcommands, and flags.
+
+### Homebrew (automatic)
+
+If you installed via `brew install oackctl`, completions for bash, zsh, and fish are already installed. Just make sure your shell loads them.
+
+**zsh** — verify Homebrew's site-functions is in your `FPATH` (add to `~/.zshrc` before `compinit`):
+
+```bash
+# ~/.zshrc
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  autoload -Uz compinit
+  compinit
+fi
+```
+
+Then open a new terminal and try `oackctl <TAB>`.
+
+### Manual setup
+
+Generate and install completion scripts directly:
+
+**Bash:**
+```bash
+oackctl completion bash > /etc/bash_completion.d/oackctl
+# or for current user only:
+oackctl completion bash > ~/.bash_completion.d/oackctl
+echo 'source ~/.bash_completion.d/oackctl' >> ~/.bashrc
+```
+
+**Zsh:**
+```bash
+oackctl completion zsh > "${fpath[1]}/_oackctl"
+# or to a custom location:
+oackctl completion zsh > ~/.zsh/completions/_oackctl
+echo 'fpath=(~/.zsh/completions $fpath)' >> ~/.zshrc
+```
+
+**Fish:**
+```bash
+oackctl completion fish > ~/.config/fish/completions/oackctl.fish
+```
+
+After any manual setup, restart your shell or run `source ~/.zshrc` / `source ~/.bashrc`.
+
 ## Output formats
 
 ```bash
